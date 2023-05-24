@@ -89,7 +89,7 @@ skips[CKV2_AWS_32]="TODO: Ensure CloudFront distribution has a response headers 
 repeat_counter=0
 lines_incr=1
 for key value in "${(@kv)skips}"; do
-  for finding in $(pre-commit run -a | grep -A2 $key  | grep 'File:' | cut -d '/' -f2 | rev | cut -d- -f2- | rev | sort -t ':' -k 2,2n | sort -t ':' -k 1,1 -s); do
+  for finding in $(pre-commit run -a | grep -A2 "${key}:"  | grep 'File:' | cut -d '/' -f2 | rev | cut -d- -f2- | rev | sort -t ':' -k 2,2n | sort -t ':' -k 1,1 -s); do
     filename=$(echo $finding | cut -d ':' -f1)
     str_num=$(echo $finding | cut -d ':' -f2)
 
